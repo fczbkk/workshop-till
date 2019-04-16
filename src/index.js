@@ -1,6 +1,6 @@
 const {validateEmail} = require('./utilities.js')
 
-console.log('kukuk')
+console.log('este raz aktualizovany kod')
 
 const button1 = document.getElementById('validateButton')
 const button2 = document.getElementById('validateButton2')
