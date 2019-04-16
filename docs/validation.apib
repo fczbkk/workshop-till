@@ -1,0 +1,29 @@
+FORMAT: 1A
+
+# Validace
+
+API pro validaci dat.
+
+## Email [/validate]
+
+### Validace emailové adresy [GET]
+
++ Request (application/json)
+
+        {
+            "timestamp": 123456789,
+            "delay": 2,
+            "email": "riki@fczbkk.com"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "receivedTimestamp": 123456789,
+            "respondedTimestamp": 123456789,
+            "state": "ok",
+            "result": {
+            	"isEmailValid": true,
+            	"reason": "validation"
+            }
+        }
