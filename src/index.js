@@ -1,15 +1,30 @@
-console.log('validacni utility')
+const {validateEmail} = require('./utilities.js')
+
+console.log('kukuk')
 
 const button1 = document.getElementById('validateButton')
 const button2 = document.getElementById('validateButton2')
+const buttonLocal = document.getElementById('validateLocal')
 const input = document.getElementById('emailInput')
 const result = document.getElementById('validationResult')
 
 button1.addEventListener('click', function () {
-  validateEmail(2)
+  validateEmailServer(2)
 })
 button2.addEventListener('click', function () {
-  validateEmail(5)
+  validateEmailServer(5)
+})
+
+buttonLocal.addEventListener('click', function () {
+  const vysledek = validateEmail(input.value)
+  if (vysledek === false) {
+    result.innerHTML = 'Emailova adresa neni validni.'
+  } else {
+    result.innerHTML = 'Emailova adresa je v pohode.'
+  }
+
+  throw new Error('Toto je falesna chyba')
+
 })
 
 function updateButtonState (state) {
@@ -23,7 +38,7 @@ function updateButtonState (state) {
 
 }
 
-function validateEmail (delay) {
+function validateEmailServer (delay) {
   updateButtonState(true)
 
   const emailAddress = input.value
@@ -52,18 +67,3 @@ function validateEmail (delay) {
       result.innerHTML = 'CHYBA: Neni mozne validovat emailovou adresu.'
     })
 }
-
-
-/*
-function ajax (url, callback) {
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      callback(xhr.responseText);
-    }
-  };
-  xhr.open("GET", url, true);
-  xhr.send();
-}
-
- */

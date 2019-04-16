@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
 
+const {validateEmailAddress} = require('./../src/utilities.js')
+
 app.use(bodyParser.json())
 app.use('/static', express.static('static'))
 
@@ -10,22 +12,6 @@ app.get('/', function (req, res) {
   const indexPath = path.resolve(__dirname, '../client/index.html')
   res.sendFile(indexPath)
 })
-
-function validateEmailAddress (email) {
-  if (typeof email !== 'string') {
-    return false
-  }
-
-  if (email.length < 6) {
-    return false
-  }
-
-  if (email.split('').indexOf('@') === -1) {
-    return false
-  }
-
-  return true
-}
 
 let latestValidationRequest = 0
 
